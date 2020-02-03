@@ -1,0 +1,53 @@
+:host {
+  display: flex;
+  flex: 1;
+  //justify-content: center;
+}
+.container {
+  flex: 1;
+  //justify-content: center;
+  justify-items: center;
+  .top-card {
+    text-align: center;
+  }
+  padding: 1em;
+  .content {
+    margin-top: 20px;
+    display: flex;
+    flex-direction: row;
+  }
+  .search-box {
+    flex: 0.5;
+    margin-right: 20px;
+  }
+  .stages-list {
+    //justify-content: center;
+    justify-items: center;
+    width: 900px;
+
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    .stage-card {
+      margin-bottom: 10px;
+    }
+  }
+  .logo-tt {
+    background-image: url("../../assets/tt.png");
+    background-size: cover;
+  }
+}
+
+.logo {
+  width: 150px;
+  margin: 0 auto;
+}
+
+q {
+  font-style: italic;
+  quotes: "« " " »";
+}
+.col {
+  display: flex;
+  flex-direction: column;
+}

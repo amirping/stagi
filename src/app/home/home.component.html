@@ -1,0 +1,60 @@
+<div class="container">
+  <mat-card class="top-card">
+    <p>
+      <img class="logo" src="assets/tt.png" alt="angular logo" />
+    </p>
+    <mat-card-content>
+      <mat-card-title translate>Welcome to Stagi !</mat-card-title>
+      <mat-card-subtitle>
+        <app-loader [isLoading]="isLoading" size="1.5"></app-loader>
+        <q [hidden]="!isLoading">Loading stages ...</q>
+      </mat-card-subtitle>
+    </mat-card-content>
+  </mat-card>
+  <div class="content">
+    <div class="search-box">
+      <mat-card>
+        <mat-card-header>
+          <mat-card-title>Search Box</mat-card-title>
+        </mat-card-header>
+        <mat-card-content class="col">
+          <mat-form-field>
+            <input matInput placeholder="Search title" />
+          </mat-form-field>
+          <mat-form-field>
+            <mat-select placeholder="Minimum Duration">
+              <mat-option value="option">Option</mat-option>
+            </mat-select>
+          </mat-form-field>
+          <mat-form-field>
+            <mat-select placeholder="Maximum Duration">
+              <mat-option value="option">Option</mat-option>
+            </mat-select>
+          </mat-form-field>
+          <mat-form-field>
+            <mat-select placeholder="Location">
+              <mat-option value="option">Option</mat-option>
+            </mat-select>
+          </mat-form-field>
+          <mat-chip-list>
+            <mat-chip>Papadum</mat-chip>
+            <mat-chip>Naan</mat-chip>
+            <mat-chip>Dal</mat-chip>
+          </mat-chip-list>
+        </mat-card-content>
+      </mat-card>
+    </div>
+    <div class="stages-list">
+      <mat-card *ngFor="let stage of stages" class="stage-card">
+        <mat-card-header>
+          <div mat-card-avatar class="logo-tt"></div>
+          <mat-card-title>{{ stage.title }}</mat-card-title>
+          <mat-card-subtitle>{{ stage.stage_type.label }} - {{ stage.level.label }}</mat-card-subtitle>
+        </mat-card-header>
+        <mat-card-content>
+          <p>{{ stage.Descrp.substring(1, 250) }}...</p>
+        </mat-card-content>
+      </mat-card>
+    </div>
+  </div>
+</div>
