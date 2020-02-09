@@ -19,29 +19,50 @@
         </mat-card-header>
         <mat-card-content class="col">
           <mat-form-field>
-            <input matInput placeholder="Search title" />
+            <input matInput name="title" placeholder="Search title" [(ngModel)]="filter.title" />
           </mat-form-field>
           <mat-form-field>
             <mat-select placeholder="Minimum Duration">
-              <mat-option value="option">Option</mat-option>
+              <input matInput placeholder="Search title" />
             </mat-select>
           </mat-form-field>
           <mat-form-field>
             <mat-select placeholder="Maximum Duration">
-              <mat-option value="option">Option</mat-option>
+              <input matInput placeholder="Search title" />
             </mat-select>
           </mat-form-field>
           <mat-form-field>
             <mat-select placeholder="Location">
-              <mat-option value="option">Option</mat-option>
+              <mat-option *ngFor="let loc of filterData.locations" value="{{ loc }}">{{
+                loc.replace('_', ' ')
+              }}</mat-option>
             </mat-select>
           </mat-form-field>
-          <mat-chip-list>
-            <mat-chip>Papadum</mat-chip>
-            <mat-chip>Naan</mat-chip>
-            <mat-chip>Dal</mat-chip>
-          </mat-chip-list>
+          <mat-form-field>
+            <mat-select placeholder="Stage Level">
+              <mat-option *ngFor="let level of filterData.levels" value="{{ level.id }}">{{ level.label }}</mat-option>
+            </mat-select>
+          </mat-form-field>
+          <mat-form-field>
+            <mat-select placeholder="Type stage">
+              <mat-option *ngFor="let type of filterData.stagesTypes" value="{{ type.id }}">{{
+                type.label
+              }}</mat-option>
+            </mat-select>
+          </mat-form-field>
+          <mat-form-field>
+            <mat-chip-list #chipList>
+              <mat-chip [removable]="true" [selectable]="true">
+                Javascript
+                <mat-icon matChipRemove>cancel</mat-icon>
+              </mat-chip>
+              <input [matChipInputFor]="chipList" [matChipInputSeparatorKeyCodes] placeholder="Technologies" />
+            </mat-chip-list>
+          </mat-form-field>
         </mat-card-content>
+        <mat-card-actions>
+          <button mat-raised-button color="accent" style="width: 100%;">Search</button>
+        </mat-card-actions>
       </mat-card>
     </div>
     <div class="stages-list">
@@ -52,8 +73,14 @@
           <mat-card-subtitle>{{ stage.stage_type.label }} - {{ stage.level.label }}</mat-card-subtitle>
         </mat-card-header>
         <mat-card-content>
-          <p>{{ stage.Descrp.substring(1, 250) }}...</p>
+          <p>{{ clearString(stage.Descrp) }}...</p>
         </mat-card-content>
+        <mat-card-footer>
+          <div class="some">
+            <span class="small-text">{{ stage.created_at | date: 'dd/MM/yyyy' }} - {{ stage.location }}</span>
+            <a mat-raised-button color="primary" href="stage/{{ stage.id }}">show more</a>
+          </div>
+        </mat-card-footer>
       </mat-card>
     </div>
   </div>

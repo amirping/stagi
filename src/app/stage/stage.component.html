@@ -1,0 +1,48 @@
+<div class="main">
+  <mat-card class="top-card">
+    <mat-card-content>
+      <mat-card-title translate>{{ stageData.title }} - {{ stageData.stage_type.label }}</mat-card-title>
+      <mat-card-subtitle>
+        posted at : {{ stageData.created_at | date }} -
+        <span *ngIf="stageData.active" class="stat active">{{ stageData.active + '' }}</span>
+        <span *ngIf="!stageData.active" class="stat dis">{{ stageData.active + '' }}</span>
+      </mat-card-subtitle>
+    </mat-card-content>
+  </mat-card>
+  <mat-card class="card-data">
+    <app-loader [isLoading]="stageData.length === 0" size="1.5"></app-loader>
+    <mat-card-content>
+      <h4>Description :</h4>
+      <div [innerHTML]="markdown(stageData.Descrp)"></div>
+      <div class="dit-stage">
+        <span>
+          <b>Date de stage :</b>
+          {{ stageData.startDate | date }}
+        </span>
+        <span>
+          <b>Periode du stage : </b>
+          {{ stageData.durationMin }} - {{ stageData.durationMax }} Mois
+        </span>
+        <span>
+          <b>Responsable de stage :</b>
+          {{ stageData.stageResponsable }}
+        </span>
+        <span>
+          <b>remunerations : </b>
+          {{ stageData.renu || 0 }}
+        </span>
+        <span>
+          <b>Lieu de stage : </b>
+          {{ stageData.location }}
+        </span>
+        <span>
+          <b>Niveau : </b>
+          {{ stageData.level.label }}
+        </span>
+      </div>
+    </mat-card-content>
+    <mat-card-actions>
+      <button mat-raised-button color="accent">Postuler</button>
+    </mat-card-actions>
+  </mat-card>
+</div>

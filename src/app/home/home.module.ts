@@ -10,9 +10,14 @@ import { MaterialModule } from '@app/material.module';
 import { HomeRoutingModule } from './home-routing.module';
 import { HomeComponent } from './home.component';
 import { QuoteService } from './quote.service';
+import { BrowserModule } from '@angular/platform-browser';
+import { FormsModule } from '@angular/forms';
+import { StageComponent } from '@app/stage/stage.component';
 
 @NgModule({
   imports: [
+    BrowserModule,
+    FormsModule,
     CommonModule,
     TranslateModule,
     CoreModule,
@@ -22,6 +27,6 @@ import { QuoteService } from './quote.service';
     Angulartics2Module,
     HomeRoutingModule
   ],
-  declarations: [HomeComponent]
+  declarations: [HomeComponent, StageComponent]
 })
 export class HomeModule {}

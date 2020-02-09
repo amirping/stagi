@@ -1,0 +1,23 @@
+.main {
+  display: flex;
+  flex-direction: column;
+  padding: 10px;
+  .stat {
+    border-radius: 3px;
+    color: white;
+    padding: 5px;
+    &.active {
+      background-color: greenyellow;
+    }
+    &.dis {
+      background-color: red;
+    }
+  }
+  .card-data {
+    margin-top: 20px;
+  }
+  .dit-stage {
+    display: flex;
+    flex-direction: column;
+  }
+}
