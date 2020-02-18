@@ -1,0 +1,19 @@
+:host {
+  width: 100%;
+  background-image: url("../../assets/ttbg.jpg");
+  background-size: cover;
+}
+.main {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  align-content: center;
+  height: 100%;
+  width: 100%;
+  .register-fields {
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+  }
+}

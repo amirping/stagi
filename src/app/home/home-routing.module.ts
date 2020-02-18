@@ -5,12 +5,14 @@ import { extract } from '@app/core';
 import { HomeComponent } from './home.component';
 import { Shell } from '@app/shell/shell.service';
 import { StageComponent } from '@app/stage/stage.component';
+import { ProfileComponent } from '@app/profile/profile.component';
 
 const routes: Routes = [
   Shell.childRoutes([
     { path: '', redirectTo: '/home', pathMatch: 'full' },
     { path: 'home', component: HomeComponent, data: { title: extract('Home') } },
-    { path: 'stage/:id', component: StageComponent, data: { title: extract('Stage') } }
+    { path: 'stage/:id', component: StageComponent, data: { title: extract('Stage') } },
+    { path: 'profile', component: ProfileComponent, data: { title: extract('Profile') } }
   ])
 ];
 

@@ -13,6 +13,7 @@ import { QuoteService } from './quote.service';
 import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule } from '@angular/forms';
 import { StageComponent } from '@app/stage/stage.component';
+import { ProfileComponent } from '@app/profile/profile.component';
 
 @NgModule({
   imports: [
@@ -27,6 +28,6 @@ import { StageComponent } from '@app/stage/stage.component';
     Angulartics2Module,
     HomeRoutingModule
   ],
-  declarations: [HomeComponent, StageComponent]
+  declarations: [HomeComponent, StageComponent, ProfileComponent]
 })
 export class HomeModule {}
