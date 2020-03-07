@@ -3,6 +3,7 @@ import { finalize } from 'rxjs/operators';
 import { COMMA, ENTER } from '@angular/cdk/keycodes';
 import { QuoteService } from './quote.service';
 import { StageService } from '@app/core/http/stage.service';
+import { CredentialsService } from '@app/core';
 
 @Component({
   selector: 'app-home',
@@ -13,6 +14,7 @@ export class HomeComponent implements OnInit {
   quote: string | undefined;
   stages: Array<any> | undefined;
   isLoading = false;
+  isAuth = false;
   readonly separatorKeysCodes: number[] = [ENTER, COMMA];
   filterData = {
     durations: [] as Array<any>,
@@ -29,7 +31,11 @@ export class HomeComponent implements OnInit {
     title: '',
     typeStage: Number
   };
-  constructor(private quoteService: QuoteService, private stagesService: StageService) {}
+  constructor(
+    private quoteService: QuoteService,
+    private stagesService: StageService,
+    private creed: CredentialsService
+  ) {}
 
   ngOnInit() {
     this.isLoading = true;
@@ -63,6 +69,7 @@ export class HomeComponent implements OnInit {
     this.filterData.stagesTypes = [];
     this.filterData.levels = [];
     this.filter.title = '';
+    this.isAuth = this.creed.isAuthenticated();
 
     this.stagesService
       .getStages()
@@ -84,7 +91,6 @@ export class HomeComponent implements OnInit {
         })
       )
       .subscribe((_stagestypes: Array<any>) => {
-        //console.log(_stages);
         this.filterData.stagesTypes = _stagestypes;
       });
 
@@ -96,7 +102,6 @@ export class HomeComponent implements OnInit {
         })
       )
       .subscribe((_stageslevels: Array<any>) => {
-        //console.log(_stages);
         this.filterData.levels = _stageslevels;
       });
   }

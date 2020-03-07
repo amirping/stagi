@@ -46,11 +46,11 @@ export class LoginComponent implements OnInit, OnDestroy {
       )
       .subscribe(
         credentials => {
-          log.debug(`${credentials.username} successfully logged in`);
+          log.debug(`${credentials.user.username} successfully logged in`);
           this.router.navigate([this.route.snapshot.queryParams.redirect || '/'], { replaceUrl: true });
         },
         error => {
-          log.debug(`Login error: ${error}`);
+          console.log(`Login error: ${error.message}`);
           this.error = error;
         }
       );

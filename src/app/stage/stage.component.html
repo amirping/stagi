@@ -4,8 +4,8 @@
       <mat-card-title translate>{{ stageData.title }} - {{ stageData.stage_type.label }}</mat-card-title>
       <mat-card-subtitle>
         posted at : {{ stageData.created_at | date }} -
-        <span *ngIf="stageData.active" class="stat active">{{ stageData.active + '' }}</span>
-        <span *ngIf="!stageData.active" class="stat dis">{{ stageData.active + '' }}</span>
+        <span *ngIf="stageData.active" class="stat active">nous acceptons toujours les candidatures</span>
+        <span *ngIf="!stageData.active" class="stat dis">candidatures fermées</span>
       </mat-card-subtitle>
     </mat-card-content>
   </mat-card>
@@ -42,7 +42,9 @@
       </div>
     </mat-card-content>
     <mat-card-actions>
-      <button mat-raised-button color="accent">Postuler</button>
+      <button disabled="{{ !isAuth }}" (click)="openRequest(stageData)" mat-raised-button color="accent">
+        Postuler
+      </button>
     </mat-card-actions>
   </mat-card>
 </div>

@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable, of } from 'rxjs';
 import { map, catchError } from 'rxjs/operators';
 
@@ -52,10 +52,31 @@ export class StageService {
       );
   }
 
-  postulerStage(idStage: string | any, idUser: string | any): Observable<any> {
+  postulerStage(idStage: string | any, idUser: any, postulationData: any, token: string): Observable<any> {
+    const formData: FormData = new FormData();
+    formData.append('files.cv', postulationData.cv, postulationData.cv.name);
+    const data = {
+      motivation: postulationData.motivation || '',
+      user: idUser,
+      stage: idStage
+    };
+    formData.append('data', JSON.stringify(data));
+    return this.httpClient
+      .post(this.baseUrl + 'stage-requests', formData, {
+        headers: new HttpHeaders({
+          Authorization: 'Bearer ' + token
+        })
+      })
+      .pipe(
+        map((body: any) => body),
+        catchError(() => of('Error, could not load stages :-('))
+      );
+  }
+
+  getStagesByUser(username: string): Observable<Array<any>> {
     return this.httpClient
       .cache()
-      .get(this.baseUrl + '/')
+      .get(this.backUrl)
       .pipe(
         map((body: any) => body),
         catchError(() => of('Error, could not load stages :-('))

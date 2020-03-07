@@ -1,0 +1,26 @@
+<h1 mat-dialog-title>Demende de stage {{ data.stage.title }}</h1>
+<div mat-dialog-content>
+  <h4>{{ data.stage.stage_type.label }}</h4>
+  <p>
+    dans la section suivante, il vous sera demandé de renseigner certaines données afin de soumettre votre candidature.
+    si des données fausses ou erronées sont soumises. la demande du candidat sera rejetée.
+  </p>
+  <hr />
+  <form class="formi">
+    <mat-form-field>
+      <mat-label>Motivation</mat-label>
+      <textarea matInput name="motivation" [(ngModel)]="innerData.motivation"></textarea>
+    </mat-form-field>
+    <input type="file" name="cv" [(ngModel)]="innerData.cv" />
+  </form>
+  <hr />
+  <small>
+    <i>
+      après avoir soumis le candidat. vous pouvez le suivre dans la section profil
+    </i>
+  </small>
+</div>
+<div mat-dialog-actions>
+  <button mat-button (click)="onNoClick()">No Thanks</button>
+  <button mat-button [mat-dialog-close]="data.animal" cdkFocusInitial>Send</button>
+</div>

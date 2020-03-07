@@ -11,8 +11,8 @@ import { HomeRoutingModule } from './home-routing.module';
 import { HomeComponent } from './home.component';
 import { QuoteService } from './quote.service';
 import { BrowserModule } from '@angular/platform-browser';
-import { FormsModule } from '@angular/forms';
-import { StageComponent } from '@app/stage/stage.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { StageComponent, RequestDialog } from '@app/stage/stage.component';
 import { ProfileComponent } from '@app/profile/profile.component';
 
 @NgModule({
@@ -26,8 +26,10 @@ import { ProfileComponent } from '@app/profile/profile.component';
     FlexLayoutModule,
     MaterialModule,
     Angulartics2Module,
-    HomeRoutingModule
+    HomeRoutingModule,
+    ReactiveFormsModule
   ],
-  declarations: [HomeComponent, StageComponent, ProfileComponent]
+  declarations: [HomeComponent, StageComponent, ProfileComponent, RequestDialog],
+  entryComponents: [RequestDialog]
 })
 export class HomeModule {}
